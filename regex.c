@@ -8,7 +8,7 @@
 
 int main() {
     regex_t regex;
-    size_t size = 3;
+    size_t size = 10;
     regmatch_t match[size];
 
     char* string = "software-v3.0.1 - (1.0.0 Beta)";
@@ -21,7 +21,6 @@ int main() {
     }
 
     int status = false;
-    int done = false;
     while (!status) {
         status = regexec(&regex, string, size, match, 0);
 
