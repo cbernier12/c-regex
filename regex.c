@@ -11,12 +11,17 @@ int main() {
     size_t size = 10;
     regmatch_t match[size];
 
+    int out = -1;
+
     char* string = "software-v3.0.1 - (1.0.0 Beta)";
     char* test = "software-v3.0 - Beta";
     char* pattern = "([0-9]+\\.[0-9]+\\.[0-9]+)";
+    char buffer[100];
 
-    if (0 != regcomp(&regex, pattern, REG_EXTENDED)) {
-        // regerror()
+    if (0 != (out = regcomp(&regex, pattern, REG_EXTENDED))) {
+        regerror(out, &regex, buffer, 100);
+        printf("regcomp() failed with '%s'\n", buffer);
+
         return -1;
     }
 
